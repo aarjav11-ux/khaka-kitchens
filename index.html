@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Khaka Kitchens</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a drawing sheet — narrow ruled column, dimension-line blue as the only accent, sketches and real drawings as the imagery */
+:root{
+  --paper:#f5f6f2; --sheet:#ffffff; --ink:#17232c; --muted:#56636b; --rule:#d9ddd6;
+  --dim:#2462a8; --dim-soft:#e4edf7; --ply:#7d8b74; --warn:#9a4c0c;
+  --display:'Archivo',system-ui,sans-serif; --body:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11171b;--sheet:#182128;--ink:#e7ecee;--muted:#9aa8b0;--rule:#2b3740;--dim:#7fb2ec;--dim-soft:#1d2d3d;--ply:#9fb094;--warn:#f0a868;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#11171b;--sheet:#182128;--ink:#e7ecee;--muted:#9aa8b0;--rule:#2b3740;--dim:#7fb2ec;--dim-soft:#1d2d3d;--ply:#9fb094;--warn:#f0a868;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--dim)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;border-bottom:1px solid var(--rule)}
+.logo{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.logo i{display:inline-block;width:22px;height:22px;border:2px solid var(--dim);border-radius:2px;position:relative}
+.logo i::after{content:"";position:absolute;left:3px;right:3px;top:9px;height:2px;background:var(--dim)}
+nav .links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+nav .links a{color:var(--muted);text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--dim);color:#fff;border:0;border-radius:6px;padding:12px 18px;font:600 15px var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--dim);border:1.5px solid var(--dim)}
+.btn:focus-visible,button:focus-visible{outline:3px solid var(--dim-soft);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);letter-spacing:-.015em;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04;font-weight:800}
+h2{font-size:clamp(26px,3.4vw,36px);line-height:1.15;font-weight:700}
+h3{font-size:18px;font-weight:700}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.lede{font-size:18px;color:var(--muted);max-width:60ch}
+section{padding-block:64px;border-bottom:1px solid var(--rule);display:grid;gap:28px}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-block:48px 56px;border-bottom:1px solid var(--rule)}
+.hero>*{min-width:0}
+.hero .copy{display:grid;gap:20px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pair figure{margin:0;display:grid;gap:6px}
+.pair img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;border:1px solid var(--rule);background:var(--sheet)}
+.pair .out{width:100%;aspect-ratio:3/4;object-fit:contain;background:#fff}
+figcaption{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.measure{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+.measure::before,.measure::after{content:"";flex:1;height:1px;background:var(--dim)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;counter-reset:s}
+.step{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:20px;display:grid;gap:8px;align-content:start}
+.step .n{font-family:var(--mono);font-size:13px;color:var(--dim)}
+.step p{margin:0;color:var(--muted)}
+.model{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:14px;display:grid;gap:10px}
+.bar{display:flex;flex-wrap:wrap;gap:8px}
+.bar button{background:var(--paper);color:var(--ink);border:1px solid var(--rule);border-radius:6px;padding:7px 12px;font:500 14px var(--body);cursor:pointer}
+#stage{width:100%;height:480px;border-radius:8px;overflow:hidden;background:#ece8df;touch-action:none}
+.note{font-size:13.5px;color:var(--muted);margin:0}
+.sheets{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.sheets figure{margin:0;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:10px;display:grid;gap:8px}
+.sheets img{width:100%;border-radius:4px;background:#fff}
+.catches{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.catch{border-left:3px solid var(--warn);padding:4px 0 4px 16px;display:grid;gap:6px}
+.catch b{font-family:var(--mono);font-size:13px;color:var(--warn);font-weight:500}
+.catch p{margin:0;color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.plan{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:24px;display:grid;gap:14px;align-content:start}
+.plan.pick{border:2px solid var(--dim)}
+.tag{justify-self:start;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--dim-soft);color:var(--dim);padding:3px 8px;border-radius:4px}
+.price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.price strong{font-family:var(--display);font-size:38px;font-weight:800}
+.price s{color:var(--muted);font-size:17px}
+.plan ul{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--muted);font-size:15px}
+.intro{background:var(--dim-soft);border-radius:8px;padding:14px 18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.intro b{font-family:var(--mono);color:var(--dim);font-weight:500}
+.market{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+.market th,.market td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+.market th{font-weight:600;color:var(--muted);font-size:13px}
+.tw{overflow-x:auto}
+details{border-bottom:1px solid var(--rule);padding-block:14px}
+summary{cursor:pointer;font-weight:600}
+details p{color:var(--muted);margin:8px 0 0;max-width:68ch}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.contact>*{min-width:0}
+form{display:grid;gap:12px;background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:20px}
+label{display:grid;gap:4px;font-size:14px;font-weight:500}
+input,select,textarea{font:inherit;padding:10px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink)}
+.ok{color:var(--dim);font-size:14px;margin:0}
+footer{padding-block:28px;color:var(--muted);font-size:13px;font-family:var(--mono)}
+@media (max-width:760px){.hero,.contact{grid-template-columns:1fr}nav .links{display:none}#stage{height:380px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+</head><body><div class="wrap">
+<nav>
+  <div class="logo"><i></i>Khaka Kitchens</div>
+  <div class="links"><a href="#how">How it works</a><a href="#model">Live 3D</a><a href="#drawings">Drawings</a><a href="#pricing">Pricing</a><a href="#contact">Start</a></div>
+</nav>
+
+<header class="hero">
+  <div class="copy">
+    <span class="eyebrow">Sketch → 3D model → carpenter drawings</span>
+    <h1>Send a rough sketch. Get a kitchen your carpenter can build.</h1>
+    <p class="lede">Draw your kitchen on paper with a few measurements. We turn it into an interactive 3D model you can share, and a printed drawing set with every cabinet, drawer and height marked in inches.</p>
+    <div class="cta"><a class="btn" href="#contact">Send your sketch</a><a class="btn ghost" href="#model">Try the live 3D</a></div>
+  </div>
+  <div style="display:grid;gap:10px">
+    <div class="pair">
+      <figure><img src="sketch.jpg" alt="Hand-drawn sketch of a kitchen platform with 101, 22, 26 and 69 inch measurements"><figcaption>What you send</figcaption></figure>
+      <figure><img class="out" src="pg-3.jpg" alt="Main wall elevation drawing with cabinets and inch dimensions"><figcaption>What your carpenter gets</figcaption></figure>
+    </div>
+    <div class="measure">same kitchen, 101″ run</div>
+  </div>
+</header>
+
+<section id="how">
+  <span class="eyebrow">How it works</span>
+  <h2>Three steps, no site visit</h2>
+  <div class="steps">
+    <div class="step"><span class="n">Step 1</span><h3>Send a sketch and a few photos</h3><p>Paper, a tablet note or a phone photo is fine. Mark the counter length, depth, heights, the passage width, and where the window, door and fan are.</p></div>
+    <div class="step"><span class="n">Step 2</span><h3>We model it and check the fit</h3><p>We lay out cabinets and drawers, place your appliances using their real sizes, and flag anything that won't fit before a single board is cut.</p></div>
+    <div class="step"><span class="n">Step 3</span><h3>You get a 3D link and a print set</h3><p>Share the 3D model with family on any phone. Hand the printed drawings to your carpenter: plan, elevations, drawer heights, cabinet schedule and services.</p></div>
+  </div>
+</section>
+
+<section id="model">
+  <span class="eyebrow">Live example</span>
+  <h2>A real kitchen, built from the sketch above</h2>
+  <p class="lede" style="margin:0">Drag to turn it around. Every cabinet is open and filled with the family's actual inventory, so they could decide where each pressure cooker and spice jar goes.</p>
+  <div class="model">
+    <div class="bar">
+      <button id="vWash">Washer corner</button><button id="vWin">Overview</button><button id="vPlan">Plan</button><button id="vFront">Drawers</button><button id="vUp">Uppers</button><button id="vLab">Hide labels</button><button id="vDim">Hide dimensions</button>
+    </div>
+    <div id="stage"></div>
+    <p class="note">Shareable version: <a href="https://aarjav11-ux.github.io/kitchen-3d/" target="_blank" rel="noopener">aarjav11-ux.github.io/kitchen-3d</a></p>
+  </div>
+</section>
+
+<section id="drawings">
+  <span class="eyebrow">The print set</span>
+  <h2>Drawings in the language carpenters use</h2>
+  <p class="lede" style="margin:0">An 8-page A4 set in inches. These are pages from the same project.</p>
+  <div class="sheets">
+    <figure><img src="pg-2.jpg" alt="Floor plan with cabinets, pantry, washing machine and door swing"><figcaption>Floor plan · passage widths, door swing</figcaption></figure>
+    <figure><img src="pg-3.jpg" alt="Main wall elevation"><figcaption>Main wall · every module and height</figcaption></figure>
+    <figure><img src="pg-6.jpg" alt="Drawer details with heights from the floor"><figcaption>Drawer details · each joint from the floor</figcaption></figure>
+    <figure><img src="pg-7.jpg" alt="Cabinet schedule table"><figcaption>Cabinet schedule · size, build, contents</figcaption></figure>
+  </div>
+  <figure style="margin:0;display:grid;gap:6px;max-width:420px"><img src="plan-sketch.jpg" alt="Hand sketch of the kitchen plan showing a 47 inch passage, sink and window" style="width:100%;border-radius:6px;border:1px solid var(--rule)"><figcaption>The second sketch the plan was built from</figcaption></figure>
+</section>
+
+<section>
+  <span class="eyebrow">Why check first</span>
+  <h2>What we caught on this one kitchen</h2>
+  <div class="catches">
+    <div class="catch"><b>Dishwasher</b><p>The opening under the slab was 22″. A built-in dishwasher needs about 32″. Caught on paper, not after delivery.</p></div>
+    <div class="catch"><b>Sloping slab</b><p>The platform dropped from 27″ to 26″ underneath. Cabinets were built level with a scribed strip instead of being cut to fit on site.</p></div>
+    <div class="catch"><b>Ceiling fan</b><p>The fan blades sat level with the upper cabinets. Uppers were set to stop 3″ below the blades.</p></div>
+    <div class="catch"><b>Gas hose</b><p>The cylinder-to-stove hose got its own 2″ channel behind the drawers, kept under the 1.5 m limit.</p></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <span class="eyebrow">Pricing</span>
+  <h2>One flat price per kitchen</h2>
+  <div class="intro"><b>Introductory offer</b><span>Half price for the first 20 kitchens.</span></div>
+  <div class="plans">
+    <div class="plan">
+      <h3>Drawings</h3>
+      <div class="price"><strong>₹1,999</strong><s>₹3,999</s></div>
+      <ul><li>Print-ready A4 drawing set in inches</li><li>Plan, elevations, section, drawer details</li><li>Cabinet schedule and hardware list</li><li>1 round of changes</li></ul>
+    </div>
+    <div class="plan pick">
+      <span class="tag">Most chosen</span>
+      <h3>3D + Drawings</h3>
+      <div class="price"><strong>₹3,499</strong><s>₹6,999</s></div>
+      <ul><li>Everything in Drawings</li><li>Interactive 3D model with a share link</li><li>Your appliances placed at real sizes</li><li>2 rounds of changes</li></ul>
+    </div>
+    <div class="plan">
+      <h3>Complete</h3>
+      <div class="price"><strong>₹4,999</strong><s>₹9,999</s></div>
+      <ul><li>Everything in 3D + Drawings</li><li>Your current inventory mapped to each drawer and shelf</li><li>Plumbing, gas and electrical point list</li><li>3 rounds of changes</li></ul>
+    </div>
+  </div>
+  <div class="tw"><table class="market">
+    <thead><tr><th>What others charge</th><th>Typical price</th><th>What you get</th></tr></thead>
+    <tbody>
+      <tr><td>Kitchen design or 3D rendering, per sq ft</td><td>₹120–150 per sq ft</td><td>Design for one kitchen, usually priced on area</td></tr>
+      <tr><td>3D render, per image</td><td>₹500–5,000 per view</td><td>A still picture, no carpenter drawings</td></tr>
+      <tr><td>Khaka 3D + Drawings</td><td>₹6,999 (₹3,499 intro)</td><td>Live 3D you can turn, plus a full print set</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Questions</span>
+  <h2>Before you send a sketch</h2>
+  <div>
+    <details><summary>Do you visit the site?</summary><p>No. We work from your sketch, photos and measurements. The drawings list what your carpenter should re-measure before cutting.</p></details>
+    <details><summary>Inches or millimetres?</summary><p>Inches by default, since most carpenters here work in inches. Board and banding thicknesses stay in mm, the way they are sold.</p></details>
+    <details><summary>Do you build the kitchen?</summary><p>No. You keep your own carpenter and buy your own materials. We give you drawings he can follow.</p></details>
+    <details><summary>How long does it take?</summary><p>Usually 2–3 working days for the first version, then a day for each round of changes.</p></details>
+  </div>
+</section>
+
+<section id="contact" class="contact" style="border-bottom:0">
+  <div style="display:grid;gap:14px;align-content:start">
+    <span class="eyebrow">Start</span>
+    <h2>Tell us about your kitchen</h2>
+    <p class="lede" style="margin:0">Fill this in and we'll reply with what to photograph and measure.</p>
+  </div>
+  <form id="enq">
+    <label for="f-name">Name<input id="f-name" required></label>
+    <label for="f-phone">Phone or WhatsApp<input id="f-phone" required inputmode="tel"></label>
+    <label for="f-city">City<input id="f-city"></label>
+    <label for="f-plan">Plan<select id="f-plan"><option>3D + Drawings</option><option>Drawings</option><option>Complete</option></select></label>
+    <label for="f-note">Anything we should know<textarea id="f-note" rows="3" placeholder="Straight counter, 101 inches, window at one end"></textarea></label>
+    <button class="btn" type="submit">Send enquiry</button>
+    <p class="ok" id="ok" hidden></p>
+  </form>
+</section>
+
+<footer>Khaka Kitchens · sketch-to-carpenter kitchen drawings</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="model.js"></script>
+<script>
+document.getElementById('enq').addEventListener('submit',e=>{e.preventDefault();const ok=document.getElementById('ok');ok.hidden=false;ok.textContent='Enquiry form is a preview. Contact details are not connected yet.';});
+</script>
+
+</body></html>
